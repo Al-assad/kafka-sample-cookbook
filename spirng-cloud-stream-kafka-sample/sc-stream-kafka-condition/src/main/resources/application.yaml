@@ -9,16 +9,10 @@ spring:
         sample-topic-input:
           destination: test-topic1
           content-type: application/json
-          cunsumer:
-            group: group-default
+          group: group-default
         sample-topic-output:
           destination: test-topic1
           content-type: application/json
-        sample-topic2:
-          destination: test-topic2
-          content-type: application/json
-          cunsumer:
-            group: group-default
      # Spring Cloud Stream Kafka 配置项
       kafka:
         # Kafka Binder 配置项，对应 KafkaBinderConfigurationProperties 类
