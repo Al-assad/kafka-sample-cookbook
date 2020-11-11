@@ -27,8 +27,8 @@ public class KafkaConsumerOffsetCommitSample {
     public static KafkaConsumer<String, String> getKafkaConsumer() {
         Properties properties = new Properties();
         properties.put("bootstrap.servers", "localhost:9092");
-        properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         properties.put("group.id", "my-consumer");
         // 关闭自动提交
         properties.put("auto.commit.offset", "false");

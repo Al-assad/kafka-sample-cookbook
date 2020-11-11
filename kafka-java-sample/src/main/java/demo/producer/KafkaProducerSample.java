@@ -31,7 +31,7 @@ public class KafkaProducerSample {
     @BeforeAll
     public static void initKafkaProducer() {
         Properties properties = new Properties();
-        properties.put("bootstrap.servers", "localhost:9092");
+        properties.put("bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094");
         // properties.put("bootstrap.servers","broker1:9092,broker2:9092");
         properties.put("acks", "all");
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -72,7 +72,7 @@ public class KafkaProducerSample {
      */
     @Test
     public void sendMsgSync() throws ExecutionException, InterruptedException {
-        ProducerRecord<String, String> record = new ProducerRecord<>("test-topic", "greeting", "this is sync message!");
+        ProducerRecord<String, String> record = new ProducerRecord<>("test-topic", "this is sync message!");
         RecordMetadata recordMetadata = kafkaProducer.send(record).get();
         log.info("record meta: {}", recordMetadata.toString());
     }
@@ -82,7 +82,7 @@ public class KafkaProducerSample {
      */
     @Test
     public void sendMsgAsync(){
-        ProducerRecord<String, String> record = new ProducerRecord<>("test-topic", "greeting", "this is async message!");
+        ProducerRecord<String, String> record = new ProducerRecord<>("test-topic",  "this is async message!");
         kafkaProducer.send(record, new MyCallback());
     }
     
