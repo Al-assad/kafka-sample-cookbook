@@ -10,3 +10,6 @@
 
 * **kafka-java-sample**：Kafka Java-Client 示例代码
 
+* **spring-kafka-sample**：Spring for Apache Kafka 示例代码
+* 
+
