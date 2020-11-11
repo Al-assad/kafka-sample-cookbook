@@ -8,7 +8,12 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-
+/**
+ * Kafka Consumer 消费信息
+ *
+ * @author yulinying
+ * @since 2020/11/11
+ */
 @Component
 @Slf4j
 public class KafkaConsumer {
@@ -21,18 +26,11 @@ public class KafkaConsumer {
         log.info("receive: {}", foo.toString());
     }
     
-    /**
-     * 监听 topic1 DLT 队列
-     */
-    @KafkaListener(groupId = "group1", topics = "topic1.DLT")
-    public void listenTopicDLT(String in){
-        log.info("Received from DLT: " + in);
-    }
     
     /**
      * 监听 topic1，获取其他信息
      */
-    @KafkaListener(groupId = "group2", topics = "topic1")
+    @KafkaListener(groupId = "group1", topics = "topic2")
     public void listenTopic2(@Payload Foo foo,
                              @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key,
                              @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition,
@@ -41,10 +39,10 @@ public class KafkaConsumer {
         log.info("receive: key={}, partition={}, topic={}, timestamp={}", key, partition, topic, ts);
         log.info("payload={}", foo.toString());
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 }

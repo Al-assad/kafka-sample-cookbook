@@ -1,0 +1,4 @@
+###
+POST http://localhost:8080/send/foo/hello
+###
+POST http://localhost:8080/send/foo2/assad
