@@ -1,0 +1,32 @@
+
+spring:
+  application:
+    name: spring-cloud-stream-kafka-sample
+  cloud:
+    stream:
+      # Binding 配置项，对应 BindingProperties Map
+      bindings:
+        sample-topic-input:
+          destination: test-topic1
+          content-type: application/json
+          group: group-default
+          consumer:
+            concurrency: 2 # 每个 Consumer 消费线程数的初始大小，默认为 1
+        sample-topic-output:
+          destination: test-topic1
+          content-type: application/json
+          producer:
+            partition-key-expression: header['partition']  # 分区 key 表达式。该表达式基于 Spring EL。
+      # Spring Cloud Stream Kafka 配置项
+      kafka:
+        # Kafka Binder 配置项，对应 KafkaBinderConfigurationProperties 类
+        binder:
+          brokers: localhost:9092,localhost:9093,localhost:9094
+        # Kafka 自定义 Binding 配置项，对应 KafkaBindingProperties Map
+        bindings:
+          sample-topic-output:
+            producer:
+              sync: true  # 是否同步发送消息，默认为 false 异步
+
+server:
+  port: 8080
